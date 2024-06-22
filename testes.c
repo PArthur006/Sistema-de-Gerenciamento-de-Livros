@@ -16,6 +16,12 @@ Etapas do Projeto de Registro de Livros:
     Armazenar e manipular os dados dos livros;
 */
 
+//CRIAÇÃO DE STRUCT
+typedef struct{
+    char nome_livro[50];
+    char autor[50];
+    int ano_livro;
+} Livros;
 
 //SUB-PROGRAMAS SIMPLES
 void limpaTela(){
@@ -46,7 +52,10 @@ int main(){
     system("TITLE       Sistema de Gerência");
     setlocale(LC_ALL, "");
 
-    int  biblioteca[10], qLivros=0, opcao;
+    int opcao;
+    Livros biblioteca[5];
+    char nome[50], autor[50];
+    int ano;
 
     while(1){
         do{
@@ -63,11 +72,15 @@ int main(){
 
             switch(opcao){
                 case 1:
-                    adLivro();
-                    qLivros += 1;
+                    limpaTeclado();
+                    printf("Nome do livro: ");
+                    fgets(nome, sizeof (nome), stdin);
+                    limpaTeclado();
+
+                    printf
+
                     break;
                 case 2:
-                    buscaLivro();
                     break;
                 /*case 3:
                     break;
@@ -92,21 +105,11 @@ int main(){
 
 //SUB-PROGRAMAS COMPLEXOS
 
-void adLivro(char nome[], char autor[], int ano) {
-    limpaTela();
+/*PROBLEMA*
+void adLivro(Livros livro) {
 
-    limpaTeclado();
-    printf("Nome do livro: ");
-    fgets(nome, 50, stdin);
-
-    printf("Nome do autor: ");
-    fgets(autor, 50, stdin);
-
-    printf("Ano do livro: ");
-    scanf("%d", &ano);
-
-    limpaTela();
 }
+
 
 void buscaLivro(){
     limpaTela();
@@ -131,3 +134,4 @@ void buscaLivro(){
         }
     }while(opcao<1 && opcao>2);
 }
+*/
