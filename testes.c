@@ -55,7 +55,7 @@ int main(){
     int opcao;
     Livros biblioteca[5];
     char nome[50], autor[50];
-    int ano;
+    int ano, cont=0;
 
     while(1){
         do{
@@ -72,13 +72,20 @@ int main(){
 
             switch(opcao){
                 case 1:
+                    cont+=1;
                     limpaTeclado();
                     printf("Nome do livro: ");
-                    fgets(nome, sizeof (nome), stdin);
+                    fgets(Livros.nome_livro , sizeof (Livros.nome_livro), stdin);
                     limpaTeclado();
 
-                    printf
+                    printf("Autor: ");
+                    fgets(autor, sizeof(autor), stdin);
+                    limpaTeclado();
 
+                    printf("Ano de publicação: ");
+                    scanf("%d", &ano);
+
+                    biblioteca[cont] = Livros.
                     break;
                 case 2:
                     break;
