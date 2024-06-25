@@ -16,13 +16,6 @@ Etapas do Projeto de Registro de Livros:
     Armazenar e manipular os dados dos livros;
 */
 
-//CRIAÇÃO DE STRUCT
-typedef struct{
-    char nome_livro[50];
-    char autor[50];
-    int ano_livro;
-} Livros;
-
 //SUB-PROGRAMAS SIMPLES
 void limpaTela(){
     system("cls");
@@ -45,65 +38,61 @@ void linhaTraco(int i){
     quebraLinha();
 }
 
-
 //ALGORITMO PRINCIPAL:
+
+//CRIAÇÃO DE STRUCT
+typedef struct{
+    char nome_livro[50];
+    char autor[50];
+    int ano_livro;
+} Livros;
 
 int main(){
     system("TITLE       Sistema de Gerência");
     setlocale(LC_ALL, "");
 
-    int opcao;
-    Livros biblioteca[5];
-    char nome[50], autor[50];
-    int ano, cont=0;
+    Livros livro;
+    int opcao, cont=0;
+    do{
+        printf("    ----------SISTEMA DE GERÊNCIA----------\n");
+        printf("\n[1] Adicionar Livro;");
+        printf("\n[2] Buscar Livro;");
+        printf("\n[3] Listar Livros;");
+        printf("\n[4] Remover Livro;");
+        printf("\n[5] Sair;");
+        linhaTraco(10);
+        printf("\nEscolha uma opção: ");
+        scanf("%d", &opcao);
 
-    while(1){
-        do{
-            printf("    ----------SISTEMA DE GERÊNCIA----------\n");
-            quebraLinha();
-            printf("\n[1] Adicionar Livro;");
-            printf("\n[2] Buscar Livro;");
-            printf("\n[3] Listar Livros;");
-            printf("\n[4] Remover Livro;");
-            printf("\n[5] Sair;");
-            linhaTraco(10);
-            printf("\nEscolha uma opção: ");
-            scanf("%d", &opcao);
+        switch(opcao){
+            case 1:
+                cont+=1
+                limpaTela();
+                printf("Título: ");
+                fgets(livro.nome_livro, 50, stdin);
 
-            switch(opcao){
-                case 1:
-                    cont+=1;
-                    limpaTeclado();
-                    printf("Nome do livro: ");
-                    fgets(Livros.nome_livro , sizeof (Livros.nome_livro), stdin);
-                    limpaTeclado();
+                printf("Autor: ");
+                fgets(livro.autor, 50, stdin);
 
-                    printf("Autor: ");
-                    fgets(autor, sizeof(autor), stdin);
-                    limpaTeclado();
+                printf("Ano de lançamento: ");
+                scanf("%d", &livro.ano_livro);
 
-                    printf("Ano de publicação: ");
-                    scanf("%d", &ano);
-
-                    biblioteca[cont] = Livros.
-                    break;
-                case 2:
-                    break;
-                /*case 3:
-                    break;
-                case 4:
-                    break;*/
-                case 5:
-                    break;
-                default:
-                    limpaTela();
-                    printf("Opção inválida. Tente novamente:");
-                    linhaTraco(10);
-            }
-            break;
-        }while(opcao != 5);
-        break;
-    }
+                break;
+            case 2:
+                break;
+            case 3:
+                printf("Livro %d\n", cont);
+                printf("Título: %s\n")
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            default:
+                limpaTela();
+                puts("Opção inválida. Tente novamente:");
+        }
+    }while(opcao < 1 && opcao > 5);
 
     quebraLinha();
     system("pause");
