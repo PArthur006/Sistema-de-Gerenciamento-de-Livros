@@ -3,27 +3,27 @@
 #include <locale.h>
 #include <string.h>
 /*
-Descriï¿½ï¿½o simples do Projeto:
+Descrição simples do Projeto:
         Um sistema para gerenciar livros de uma biblioteca. Deve
-    permitir a adiï¿½ï¿½o e remoï¿½ï¿½o de livros, pesquisa por ano e
+    permitir a adição e remoção de livros, pesquisa por ano e
     listagem dos livros.
 */
 
 //==========================SUB-PROGRAMAS==========================
 
-//Definiï¿½ï¿½o da struct Livro:
+//Definindo a struct Livro:
 typedef struct{
     char titulo[100];
     char autor[100];
     int ano;
 }Livro;
 
-// Funï¿½ï¿½o para limpar a tela:
+// Função para limpar a tela:
 void limpaTela() {
     system("cls");
 }
 
-// Funï¿½ï¿½o para inserir linha-traï¿½o:
+// Função para inserir linha-traço:
 void linhaTraco(){
     int c;
     for (c=0; c<=30; c++){
@@ -32,29 +32,33 @@ void linhaTraco(){
     printf("\n");
 }
 
-// Funï¿½ï¿½o para limpar o buffer do teclado
+// Função para limpar o buffer do teclado
 void limpaTeclado() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
-// Funï¿½ï¿½o para adicionar um livro
+// Função para adicionar um livro
 Livro adLivro() {
+    //Definindo variável do tipo Livro:
     Livro livro;
 
     limpaTela();
 
+    //Lendo dados do livro:
     linhaTraco();
     printf("Nome do livro: ");
     fgets(livro.titulo, 100, stdin);
 
-    livro.titulo[strcspn(livro.titulo, "\n")] = '\0';  // Remove o caractere de nova linha
+    // Removendo o caractere de nova linha:
+    livro.titulo[strcspn(livro.titulo, "\n")] = '\0';
 
     linhaTraco();
     printf("Nome do autor: ");
     fgets(livro.autor, 100, stdin);
 
-    livro.autor[strcspn(livro.autor, "\n")] = '\0';  // Remove o caractere de nova linha
+    // Remove o caractere de nova linha
+    livro.autor[strcspn(livro.autor, "\n")] = '\0';
 
     linhaTraco();
     printf("Ano do livro: ");
@@ -64,16 +68,19 @@ Livro adLivro() {
     return livro;
 }
 
-// Funï¿½ï¿½o para listar os livros
+// Função para listar os livros
 void listaLivros(Livro livros[], int quantidade) {
 
-    limpaTela();
+    //Definindo variável:
     int i;
 
+    limpaTela();
+
+    //Laço de Repetição para listagem de livros:
     for (i = 0; i < quantidade; i++) {
         linhaTraco();
         printf("Livro %d:\n", i + 1);
-        printf("Tï¿½tulo: %s\n", livros[i].titulo);
+        printf("Título: %s\n", livros[i].titulo);
         printf("Autor: %s\n", livros[i].autor);
         printf("Ano: %d\n\n", livros[i].ano);
         linhaTraco();
@@ -84,24 +91,28 @@ void listaLivros(Livro livros[], int quantidade) {
     getchar();
 }
 
-// Funï¿½ï¿½o para buscar livros (por ano):
+// Função para buscar livros (por ano):
 void buscaPorAno(Livro livros[], int quantidade, int ano) {
-    limpaTela();
-
+    //Definindo variável:
     int encontrado = 0;
 
+    limpaTela();
+
+    //Laço de repetição para listar os dados dos livros encontrados:
     for (int i = 0; i < quantidade; i++) {
         if (livros[i].ano == ano) {
             linhaTraco();
             printf("Livro %d:\n", i + 1);
-            printf("Tï¿½tulo: %s\n", livros[i].titulo);
+            printf("Título: %s\n", livros[i].titulo);
             printf("Autor: %s\n", livros[i].autor);
             printf("Ano: %d\n\n", livros[i].ano);
-            encontrado = 1;
+
+            encontrado = 1; //Assume esse valor para invalidar a condicional seguinte:
             linhaTraco();
         }
     }
 
+    //Condicional para caso nenehum livro seja encontrado:
     if (encontrado==0) {
         printf("Nenhum livro encontrado para o ano %d.\n", ano);
         linhaTraco();
@@ -112,20 +123,25 @@ void buscaPorAno(Livro livros[], int quantidade, int ano) {
     getchar();
 }
 
-// Funï¿½ï¿½o para remover um livro:
+// Função para remover um livro:
 void removeLivro(Livro livros[], int *quantidade, int indice) {
+    //Condicional para caso o indice não seja válido
     if (indice < 0 || indice >= *quantidade) {
         linhaTraco();
-        printf("ï¿½ndice invï¿½lido!\n");
+        printf("Índice inválido!\n");
         linhaTraco();
-        return;
+
+        return; //Encerra a função sem nenhum retorno;
     }
 
+    //Laço de repetição para Trocar os livros de posição:
     for (int i = indice; i < *quantidade - 1; i++) {
         livros[i] = livros[i + 1];
     }
 
+    //Decremento para remover o último espaço ocupado:
     (*quantidade)--;
+
     linhaTraco();
     printf("Livro removido com sucesso.\n");
     linhaTraco();
@@ -135,75 +151,97 @@ void removeLivro(Livro livros[], int *quantidade, int indice) {
     getchar();
 }
 
-//ALGORITMO PRINCIPAL:
+//==========================ALGORITMO PRINCIPAL==========================:
 int main() {
+    //Título para o prompt aberto:
+    system("TITLE Sistema de Gerenciamento de Biblioteca");
+    //Código para permissão de caracteres especiais:
     setlocale(LC_ALL, "");
 
+    //Definindo variáveis:
     Livro livros[100];
     int opcao;
     int quantidade = 0;
     int ano, indice;
 
+    //Laço de repetição "eterno" para que o programa só se encerre caso o usuário deseje:
     while(1){
         limpaTela();
         linhaTraco();
         printf("        Sistema de Gerenciamento de Biblioteca\n");
         linhaTraco();
+
         printf("1. Adicionar livro\n");
         printf("2. Listar livros\n");
         printf("3. Buscar livro por ano\n");
         printf("4. Remover livro\n");
         printf("5. Sair\n");
         linhaTraco();
-        printf("Escolha uma opÃ§Ã£o: ");
+
+        //Lendo opção do usuário:
+        printf("Escolha uma opção: ");
         scanf("%d", &opcao);
         limpaTeclado();
 
+        //Condicional mediante escolha do usuário:
         switch(opcao){
-            case 1:
+            case 1: //Adicionar livros:
+
+                //Condicional para verificar se a "biblioteca" está cheia:
                 if (quantidade < 100) {
                     livros[quantidade] = adLivro();
                     quantidade++;
                 }
                 else{
                     linhaTraco();
-                    printf("Capacidade mï¿½xima de livros atingida.\n");
+                    printf("Capacidade máxima de livros atingida.\n");
                     linhaTraco();
                     printf("Pressione Enter para continuar...");
                     limpaTeclado();
                     getchar();
                 }
                 break;
-            case 2:
+
+            case 2: //Listar livros:
                 listaLivros(livros, quantidade);
                 break;
-            case 3:
+
+            case 3: //Buscar livro por ano:
                 linhaTraco();
                 printf("Digite o ano do livro: ");
                 scanf("%d", &ano);
+
                 linhaTraco();
                 limpaTeclado();
+
                 buscaPorAno(livros, quantidade, ano);
                 break;
-            case 4:
+
+            case 4: //Remover Livro:
+                //Listando os livros para o usuário:
                 listaLivros(livros, quantidade);
                 linhaTraco();
-                printf("Digite o ï¿½ndice do livro para remover (1 a %d): ", quantidade);
+
+                printf("Digite o índice do livro para remover (1 a %d): ", quantidade);
                 scanf("%d", &indice);
                 linhaTraco();
                 limpaTeclado();
+
                 removeLivro(livros, &quantidade, indice - 1);
                 break;
-            case 5:
+
+            case 5: //Sair do programa:
                 limpaTela();
                 linhaTraco();
                 printf("                SISTEMA ENCERRADO\n");
                 linhaTraco();
-                return 0;
-            default:
+                return 0; //Retornando 0, o laço de repetição se encerra;
+
+            default: //Caso nenhum caso seja atendido:
                 linhaTraco();
-                printf("Opï¿½ï¿½o invï¿½lida! Tente novamente.\n");
+                printf("Opção inválida! Tente novamente.\n");
                 linhaTraco();
+
                 printf("Pressione Enter para continuar...");
                 limpaTeclado();
                 getchar();
