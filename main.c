@@ -3,34 +3,27 @@
 #include <locale.h>
 #include <string.h>
 /*
-Descrição: Um sistema para gerenciar livros de uma biblioteca.
-Deve permitir a adição e remoção de livros, pesquisa por ano
-e listagem dos livros.
-*/
-
-/*
-Etapas do Projeto de Registro de Livros:
-    Definir a estrutura do livro;
-    Criar funções para adicionar e listar;
-    Implementar o menu de interação com o usuário;
-    Armazenar e manipular os dados dos livros;
+Descriï¿½ï¿½o simples do Projeto:
+        Um sistema para gerenciar livros de uma biblioteca. Deve
+    permitir a adiï¿½ï¿½o e remoï¿½ï¿½o de livros, pesquisa por ano e
+    listagem dos livros.
 */
 
 //==========================SUB-PROGRAMAS==========================
 
-//Definição da struct Livro:
-struct Livro {
+//Definiï¿½ï¿½o da struct Livro:
+typedef struct{
     char titulo[100];
     char autor[100];
     int ano;
-};
+}Livro;
 
-// Função para limpar a tela:
+// Funï¿½ï¿½o para limpar a tela:
 void limpaTela() {
     system("cls");
 }
 
-// Função para inserir linha-traço:
+// Funï¿½ï¿½o para inserir linha-traï¿½o:
 void linhaTraco(){
     int c;
     for (c=0; c<=30; c++){
@@ -39,15 +32,15 @@ void linhaTraco(){
     printf("\n");
 }
 
-// Função para limpar o buffer do teclado
+// Funï¿½ï¿½o para limpar o buffer do teclado
 void limpaTeclado() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
-// Função para adicionar um livro
-struct Livro adLivro() {
-    struct Livro livro;
+// Funï¿½ï¿½o para adicionar um livro
+Livro adLivro() {
+    Livro livro;
 
     limpaTela();
 
@@ -71,8 +64,8 @@ struct Livro adLivro() {
     return livro;
 }
 
-// Função para listar os livros
-void listaLivros(struct Livro livros[], int quantidade) {
+// Funï¿½ï¿½o para listar os livros
+void listaLivros(Livro livros[], int quantidade) {
 
     limpaTela();
     int i;
@@ -80,7 +73,7 @@ void listaLivros(struct Livro livros[], int quantidade) {
     for (i = 0; i < quantidade; i++) {
         linhaTraco();
         printf("Livro %d:\n", i + 1);
-        printf("Título: %s\n", livros[i].titulo);
+        printf("Tï¿½tulo: %s\n", livros[i].titulo);
         printf("Autor: %s\n", livros[i].autor);
         printf("Ano: %d\n\n", livros[i].ano);
         linhaTraco();
@@ -91,8 +84,8 @@ void listaLivros(struct Livro livros[], int quantidade) {
     getchar();
 }
 
-// Função para buscar livros (por ano):
-void buscaPorAno(struct Livro livros[], int quantidade, int ano) {
+// Funï¿½ï¿½o para buscar livros (por ano):
+void buscaPorAno(Livro livros[], int quantidade, int ano) {
     limpaTela();
 
     int encontrado = 0;
@@ -101,7 +94,7 @@ void buscaPorAno(struct Livro livros[], int quantidade, int ano) {
         if (livros[i].ano == ano) {
             linhaTraco();
             printf("Livro %d:\n", i + 1);
-            printf("Título: %s\n", livros[i].titulo);
+            printf("Tï¿½tulo: %s\n", livros[i].titulo);
             printf("Autor: %s\n", livros[i].autor);
             printf("Ano: %d\n\n", livros[i].ano);
             encontrado = 1;
@@ -119,11 +112,11 @@ void buscaPorAno(struct Livro livros[], int quantidade, int ano) {
     getchar();
 }
 
-// Função para remover um livro:
-void removeLivro(struct Livro livros[], int *quantidade, int indice) {
+// Funï¿½ï¿½o para remover um livro:
+void removeLivro(Livro livros[], int *quantidade, int indice) {
     if (indice < 0 || indice >= *quantidade) {
         linhaTraco();
-        printf("Índice inválido!\n");
+        printf("ï¿½ndice invï¿½lido!\n");
         linhaTraco();
         return;
     }
@@ -146,7 +139,7 @@ void removeLivro(struct Livro livros[], int *quantidade, int indice) {
 int main() {
     setlocale(LC_ALL, "");
 
-    struct Livro livros[100];
+    Livro livros[100];
     int opcao;
     int quantidade = 0;
     int ano, indice;
@@ -162,7 +155,7 @@ int main() {
         printf("4. Remover livro\n");
         printf("5. Sair\n");
         linhaTraco();
-        printf("Escolha uma opção: ");
+        printf("Escolha uma opÃ§Ã£o: ");
         scanf("%d", &opcao);
         limpaTeclado();
 
@@ -174,7 +167,7 @@ int main() {
                 }
                 else{
                     linhaTraco();
-                    printf("Capacidade máxima de livros atingida.\n");
+                    printf("Capacidade mï¿½xima de livros atingida.\n");
                     linhaTraco();
                     printf("Pressione Enter para continuar...");
                     limpaTeclado();
@@ -195,17 +188,21 @@ int main() {
             case 4:
                 listaLivros(livros, quantidade);
                 linhaTraco();
-                printf("Digite o índice do livro para remover (1 a %d): ", quantidade);
+                printf("Digite o ï¿½ndice do livro para remover (1 a %d): ", quantidade);
                 scanf("%d", &indice);
                 linhaTraco();
                 limpaTeclado();
                 removeLivro(livros, &quantidade, indice - 1);
                 break;
             case 5:
+                limpaTela();
+                linhaTraco();
+                printf("                SISTEMA ENCERRADO\n");
+                linhaTraco();
                 return 0;
             default:
                 linhaTraco();
-                printf("Opção inválida! Tente novamente.\n");
+                printf("Opï¿½ï¿½o invï¿½lida! Tente novamente.\n");
                 linhaTraco();
                 printf("Pressione Enter para continuar...");
                 limpaTeclado();
