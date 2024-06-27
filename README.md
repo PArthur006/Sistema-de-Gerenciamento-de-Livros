@@ -1,5 +1,5 @@
 #		   PROJETO FINAL
-##Sistema de Gerenciamento de Biblioteca
+## Sistema de Gerenciamento de Biblioteca
 
 **Professor:** Clênio Emídio
 **Aluno:** Pedro Arthur Rodrigues Almeida
@@ -14,7 +14,7 @@ gerenciar livros de uma biblioteca.
 utilizando da IDE ColdBlocks e também postado no meu perfil pessoal 
 (github.com/PArthur006) na plataforma GitHub.com .
 
-###Conceitos utilizados: 
+### Conceitos utilizados: 
  - Estruturas de dados (structs);
  - Arrays;
  - Funções;
