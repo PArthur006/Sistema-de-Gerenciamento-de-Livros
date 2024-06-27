@@ -11,8 +11,7 @@ Universidade de Brasília - Campus Gama(UnB-FGA)._
 e Programação de Computadores(APC). A ideia é de criar um sistema para gerenciar livros de uma biblioteca.
 
    O programa permitirá a adição e remoção de novos livros, além da listagem de livros cadastrados e a pesquisa por ano. O programa será totalmente desenvolvido na linguagem C 
-utilizando da IDE ColdBlocks e também postado no meu perfil pessoal 
-(github.com/PArthur006) na plataforma [GitHub.com](github.com/PArthur006) .
+utilizando da IDE ColdBlocks e também postado no meu perfil pessoal na plataforma [GitHub.com](github.com/PArthur006) .
 
 ### Conceitos utilizados: 
  - Estruturas de dados (structs);
