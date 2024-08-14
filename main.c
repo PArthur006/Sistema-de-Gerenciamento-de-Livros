@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <string.h>
+
 /*
+    ALUNO: Pedro Arthur Rodrigues Almeida
+
 Descrição simples do Projeto:
         Um sistema para gerenciar livros de uma biblioteca. Deve
     permitir a adição e remoção de livros, pesquisa por ano e
@@ -131,6 +134,9 @@ void removeLivro(Livro livros[], int *quantidade, int indice) {
         printf("Índice inválido!\n");
         linhaTraco();
 
+        printf("Pressione Enter para continuar...");
+        limpaTeclado();
+        getchar();
         return; //Encerra a função sem nenhum retorno;
     }
 
@@ -164,18 +170,18 @@ int main() {
     int quantidade = 0;
     int ano, indice;
 
-    //Laço de repetição "eterno" para que o programa só se encerre caso o usuário deseje:
+    //Laço de repetição "eterno" para que o programa somente encerre caso o usuário deseje:
     while(1){
         limpaTela();
         linhaTraco();
         printf("        Sistema de Gerenciamento de Biblioteca\n");
         linhaTraco();
 
-        printf("1. Adicionar livro\n");
-        printf("2. Listar livros\n");
-        printf("3. Buscar livro por ano\n");
-        printf("4. Remover livro\n");
-        printf("5. Sair\n");
+        printf("    1. Adicionar livro\n");
+        printf("    2. Listar livros\n");
+        printf("    3. Buscar livro por ano\n");
+        printf("    4. Remover livro\n");
+        printf("    5. Sair\n");
         linhaTraco();
 
         //Lendo opção do usuário:
