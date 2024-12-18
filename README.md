@@ -2,7 +2,7 @@
 
 **Professor:** Clênio Emídio  
 **Aluno:** Pedro Arthur Rodrigues Almeida  
-**Universidade de Brasília - Campus Gama (UnB-FGA)**
+**Universidade de Brasília - Campus Gama (UnB-FCTE)**
 
 Este projeto foi desenvolvido como o trabalho final para a disciplina de Algoritmo e Programação de Computadores (APC) na Universidade de Brasília. O sistema tem como objetivo gerenciar o acervo de uma biblioteca, permitindo a adição, remoção, listagem e pesquisa de livros por ano.
 
